@@ -78,7 +78,7 @@ describe 'Admin Dashboard Index Page' do
     expect(page).to have_content(@c5.number_of_transactions)
   end
 
-  it 'should display a list of Invoice IDs and Items that have not been shipped' do
+  xit 'should display a list of Invoice IDs and Items that have not been shipped' do
     expect(page).to have_content(@i1.id)
     expect(page).to have_content(@i3.id)
 
