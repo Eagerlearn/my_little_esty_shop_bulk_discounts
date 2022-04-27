@@ -1,5 +1,7 @@
 <h1>Merchant Bulk Discount Index Page</h1>
 
+<%= "Upcoming Holidays" %>
+
 <%= link_to "Create a New Discount", "/bulk_discounts/new" %>
 
 <% @bulk_discounts.each do |discount| %>
@@ -10,3 +12,4 @@
     <%= link_to "Delete Discount", "/merchant/#{discount.merchant_id}/bulk_discounts/#{discount.id}", method: :delete %></p>
   </div>
 <% end %>
+

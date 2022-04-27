@@ -61,6 +61,10 @@ RSpec.describe 'Merchant Bulk Discount Index Page' do
       expect(page).to_not have_content("#{dis1.id}")
       expect(page).to_not have_content("#{dis4.id}")
     end
+
+    xit 'I see a section with a header of "Upcoming Holidays"' do
+      expect(page).to have_content("Upcoming Holidays")
+    end
   end
   describe 'Create new Bulk Discount' do
     describe 'Then I am taken to a new page where I see a form to add a new bulk discount' do
