@@ -17,4 +17,19 @@ class InvoiceItem < ApplicationRecord
     invoice_ids = InvoiceItem.where("status = 0 OR status = 1").pluck(:invoice_id)
     Invoice.order(created_at: :asc).find(invoice_ids)
   end
+
+  def correct_bulk_discount_to_apply
+    # require "pry"; binding.pry
+    item.merchant.bulk_discounts.where('bulk_discounts.quantity_threshold <= ?', quantity)
+                                .order(percentage: :desc)
+                                .first
+  end
+
+  def total_discounted_revenue
+    if correct_bulk_discount_to_apply == nil
+      (unit_price * quantity)
+    else
+      (unit_price * quantity) * (1 - (correct_bulk_discount_to_apply.percentage / 100.to_f))
+    end
+  end
 end
