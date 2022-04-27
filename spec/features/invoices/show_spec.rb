@@ -106,7 +106,12 @@ RSpec.describe 'invoices show' do
   it "I see the total discounted revenue for my merchant from this invoice which includes bulk discounts in the calculation" do
 
     visit merchant_invoice_path(@merchant1, @invoice_1)
-save_and_open_page
     expect(page).to have_content("Discounted Revenue: 90.0")
+  end
+
+  xit 'Next to each invoice item I see a link to the show page for the bulk discount that was applied (if any)' do
+    visit merchant_invoice_path(@merchant1, @invoice_1)
+    click_link "Bulk Discount Info"
+    expect(current_path).to eq("/merchant/#{@merchant1.id}/bulk_discounts/#{@dis1.id}")
   end
 end
